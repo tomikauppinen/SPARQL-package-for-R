@@ -1,4 +1,5 @@
 library(XML)
+library(RCurl)
 
 #
 # Read SPARQL results from end-point
