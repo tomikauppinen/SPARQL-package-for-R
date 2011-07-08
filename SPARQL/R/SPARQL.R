@@ -4,32 +4,38 @@ library(RCurl)
 #
 # Read SPARQL results from end-point
 #
-
 SPARQL <- function(url="http://localhost/",query="",ns=NULL,param="query",extra="") {
 	tf <- tempfile()
-        tf <- getURL(paste(url,'?',param,'=',URLencode(query),extra,sep=""), httpheader = c(Accept="application/sparql-results+xml"))
+        tf <- getURL(paste(url,'?',param,'=',URLencode(query),extra,sep=""),
+			httpheader = c(Accept="application/sparql-results+xml"))
 	DOM <- xmlParse(tf)
-	attrs <- unlist(xpathApply(DOM,
-		paste('//s:head/s:variable',sep=""),
-		namespaces=c('s'='http://www.w3.org/2005/sparql-results#'),
-		quote(xmlGetAttr(x,"name"))))
-	df <- data.frame(sapply(
-		attrs,
-		function(attr) {
-			sapply(
-				getNodeSet(DOM,
-					paste('//s:result/s:binding[@name="',attr,'"]/s:uri/text() ',
-						'| //s:result/s:binding[@name="',attr,'"]/s:bnode',
-						'| //s:result/s:binding[@name="',attr,'"]/s:literal/text()',
-						sep=""),
-					namespaces=c('s'='http://www.w3.org/2005/sparql-results#')),
-				function(x) {
-					qnames(xmlValue(x),ns)
-				})
-			}))
-	names(df) <- attrs
-	rm(DOM)
-	df
+	if(length(getNodeSet(DOM,'//s:result[1]',namespaces=c('s'='http://www.w3.org/2005/sparql-results#'))) == 0) {
+		rm(DOM)
+		data.frame(c())
+	} else {
+		attrs <- unlist(xpathApply(DOM,
+			paste('//s:head/s:variable',sep=""),
+			namespaces=c('s'='http://www.w3.org/2005/sparql-results#'),
+			quote(xmlGetAttr(x,"name"))))		
+		df <- data.frame(sapply(
+			attrs,
+			function(attr) {
+				sapply(
+					getNodeSet(DOM,
+						paste('//s:result/s:binding[@name="',attr,'"]/s:uri/text() ',
+							'| //s:result/s:binding[@name="',attr,'"]/s:bnode',
+							'| //s:result/s:binding[@name="',attr,'"]/s:literal/text()',
+							sep=""),
+						namespaces=c('s'='http://www.w3.org/2005/sparql-results#')),
+					function(x) {
+						qnames(xmlValue(x),ns)
+					},
+					simplify=FALSE)
+				}))
+		names(df) <- attrs
+		rm(DOM)
+		df
+	}
 }
 
 

@@ -1,12 +1,12 @@
 Package: SPARQL
 Type: Package
 Title: SPARQL client 
-Version: 1.1
-Date: 2011-06-11
-Author: Willem Robert van Hage and Tomi Kauppinen
+Version: 1.2
+Date: 2011-07-08
+Author: Willem Robert van Hage <W.R.van.Hage@vu.nl> and Tomi Kauppinen <tomi.kauppinen@uni-muenster.de>, with contributions from Christopher Davis <C.B.Davis@tudelft.nl>
 Maintainer: Willem Robert van Hage <W.R.van.Hage@vu.nl> and Tomi Kauppinen <tomi.kauppinen@uni-muenster.de>
 Description: Load SPARQL result table from an end-point as a data.frame
 License: GPL-3
 Depends: XML, RCurl
 LazyLoad: yes
-Packaged: 2011-06-11 08:29:20 UTC; tkauppin
+Packaged: 2011-07-08 08:29:20 UTC; wrvhage
