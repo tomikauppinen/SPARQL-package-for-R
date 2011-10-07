@@ -30,7 +30,7 @@ Examples of SPARQL end-points, \url{http://www.w3.org/wiki/SparqlEndpoints}.
 \examples{
 d <- SPARQL(url="http://services.data.gov.uk/reference/sparql",
             query="SELECT * WHERE { ?s ?p ?o . } LIMIT 10",
-            ns=c('time','http://www.w3.org/2006/time#'))
+            ns=c('time','<http://www.w3.org/2006/time#>'))
 
 is.data.frame(d)
 }

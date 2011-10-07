@@ -23,8 +23,8 @@ SPARQL(url = "http://localhost/", query = "", ns = NULL, param = "query", extra 
   \item{ns}{
 %%     ~~Describe \code{ns} here~~
   Prefixes to shorten IRIs returned by the SPARQL end-point.
-  For example, \preformatted{ns=c('dc','http://purl.org/dc/elements/1.1/',
-     'rdfs','http://www.w3.org/2000/01/rdf-schema#')} will shorten the IRIs \code{'http://purl.org/dc/elements/1.1/title'} to \code{'dc:title'} and \code{'http://www.w3.org/2000/01/rdf-schema#label'} to \code{'rdfs:label'}. 
+  For example, \preformatted{ns=c('dc','<http://purl.org/dc/elements/1.1/>',
+     'rdfs','<http://www.w3.org/2000/01/rdf-schema#>')} will shorten the IRIs \code{'http://purl.org/dc/elements/1.1/title'} to \code{'dc:title'} and \code{'http://www.w3.org/2000/01/rdf-schema#label'} to \code{'rdfs:label'}. 
 }
   \item{param}{
 %%     ~~Describe \code{param} here~~
@@ -72,7 +72,7 @@ Willem Robert van Hage and Tomi Kauppinen
 \examples{
 d <- SPARQL(url="http://services.data.gov.uk/reference/sparql",
             query="SELECT * WHERE { ?s ?p ?o . } LIMIT 10",
-            ns=c('time','http://www.w3.org/2006/time#'))
+            ns=c('time','<http://www.w3.org/2006/time#>'))
 
 is.data.frame(d)
 }
