@@ -5,7 +5,7 @@
 SPARQL client
 }
 \description{
-This function connects to a SPARQL end-point over HTTP, poses a SELECT query, and return the results as a data frame with a named column for each variable from the SELECT query.
+This function connects to a SPARQL end-point over HTTP, poses a SELECT query, and return the results as a data frame with a named column for each variable from the SELECT query, a list of prefixes and namespaces that were shortened to qnames is also returned.
 }
 \usage{
 SPARQL(url = "http://localhost/", query = "", ns = NULL, param = "query", extra = "", format="xml", lossy=TRUE)
@@ -74,6 +74,6 @@ d <- SPARQL(url="http://services.data.gov.uk/reference/sparql",
             query="SELECT * WHERE { ?s ?p ?o . } LIMIT 10",
             ns=c('time','<http://www.w3.org/2006/time#>'))
 
-is.data.frame(d)
+is.data.frame(d$results)
 }
 \keyword{ SPARQL }
