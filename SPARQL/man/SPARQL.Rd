@@ -5,10 +5,12 @@
 SPARQL client
 }
 \description{
-This function connects to a SPARQL end-point over HTTP, poses a SELECT query, and return the results as a data frame with a named column for each variable from the SELECT query, a list of prefixes and namespaces that were shortened to qnames is also returned.
+This function connects to a SPARQL end-point over HTTP, poses a SELECT query or an update query (LOAD, INSERT, DELETE). If given a SELECT query it returns the results as a data frame with a named column for each variable from the SELECT query, a list of prefixes and namespaces that were shortened to qnames is also returned. If given an update query nothing is returned.
+If the parameter "query" is given, it is assumed the given query is a SELECT query and a GET request will be done to get the results from the URL of the end point.
+Otherwise, if the parameter "update" is given, it is assumed the given query is an update query and a POST request will be done to send the request to the URL of the end point.
 }
 \usage{
-SPARQL(url = "http://localhost/", query = "", ns = NULL, param = "query", extra = "", format="xml", lossy=TRUE)
+SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "", extra = NULL, format="xml", lossy=TRUE)
 }
 %%- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -20,6 +22,10 @@ SPARQL(url = "http://localhost/", query = "", ns = NULL, param = "query", extra 
 %%     ~~Describe \code{query} here~~
   A SPARQL SELECT query to fire at the end-point.
 }
+  \item{update}{
+%%     ~~Describe \code{query} here~~
+  A SPARQL update query (LOAD, INSERT, DELETE)) to fire at the end-point.
+}
   \item{ns}{
 %%     ~~Describe \code{ns} here~~
   Prefixes to shorten IRIs returned by the SPARQL end-point.
@@ -28,11 +34,11 @@ SPARQL(url = "http://localhost/", query = "", ns = NULL, param = "query", extra 
 }
   \item{param}{
 %%     ~~Describe \code{param} here~~
-  By default a SPARQL end-point accepts queries in the \code{"query"} HTTP parameter. If the end-point uses a different parameter you can specify this here.
+  By default a SPARQL end-point accepts queries in the \code{"query"} HTTP parameter and updates in the \code{"update"} parameter. If the end-point uses a different parameter you can specify this here.
 }
   \item{extra}{
 %%     ~~Describe \code{extra} here~~
-  Extra characters appended to the HTTP request URL. Some SPARQL end-points require extra parameters to work. These can be supplied, in URL encoded form, as a character vector with this parameter. This field can be used to specify the various ways in which different end-points can be told to return a certain format. For example, extra="&resultFormat=xml" or extra="&output=xml"
+  Extra parameters and their values that will be added to the HTTP request. Some SPARQL end-points require extra parameters to work. These can be supplied, in URL encoded form, as a character vector with this parameter. This field can be used to specify the various ways in which different end-points can be told to return a certain format. For example, extra=list(&resultFormat="xml") or extra=list(output="xml",queryLn="SPARQL")
 }
   \item{format}{
  Can be used to explicitly state what kind of format is returned by the output. This version supports "xml", "csv" and "tsv".
@@ -54,6 +60,7 @@ The returned data frame contains a column for each variable in the SELECT query.
 }
 \references{
 SPARQL specification, \url{http://www.w3.org/TR/rdf-sparql-query/}.\cr
+SPARQL Update specification, \url{http://www.w3.org/TR/sparql11-update/}.\cr
 Examples of SPARQL end-points, \url{http://www.w3.org/wiki/SparqlEndpoints}.
 %% ~put references to the literature/web site here ~
 }

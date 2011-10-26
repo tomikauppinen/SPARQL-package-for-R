@@ -11,35 +11,53 @@ sparqltest <- function(...) {
 #
 # Read SPARQL results from end-point
 #
-SPARQL <- function(url="http://localhost/", query="", ns=NULL, param="query", extra="", format="xml", lossy=TRUE) {
-  tf <- tempfile()
-  if(format == 'xml') {
-    tf <- getURL(paste(url, '?', param, '=', URLencode(query), extra, sep=""),
-                 httpheader = c(Accept="application/sparql-results+xml"))
-    DOM <- xmlParse(tf)
-    if(length(getNodeSet(DOM, '//s:result[1]', namespaces=sparqlns)) == 0) {
-      rm(DOM)
-      data.frame(c())
-    } else {
-      attrs <- unlist(xpathApply(DOM,
-                                 paste('//s:head/s:variable', sep=""),
-                                 namespaces=sparqlns,
-                                 quote(xmlGetAttr(x, "name"))))			
-      ns2 <- noBrackets(ns)
-      res <- sapply(attrs, get_attr(attr, DOM, ns2, lossy), simplify=FALSE)
-      df <- data.frame(res) # FIXME: fails when there are NULL values in the result table, like with incompatible UNIONS
-      names(df) <- attrs
-      rm(res)
-      rm(DOM)
-    }
-  } else if (format == 'csv') {
-    tf <- getURL(paste(url, '?', param, '=', URLencode(query), extra, sep=""))
-    df <- readCSVstring(tf, blank.lines.skip=TRUE, strip.white=TRUE)
-  } else if (format == 'tsv') {
-    tf <- getURL(paste(url, '?', param, '=', URLencode(query), extra, sep=""))
-    df <- readTSVstring(tf, blank.lines.skip=TRUE, strip.white=TRUE)
+SPARQL <- function(url="http://localhost/", query="", update="", ns=NULL, param="", extra=NULL, format="xml", lossy=TRUE) {
+  if (!is.null(extra)) {
+	  extrastr <- paste(sapply(seq(1,length(extra)),
+			    function (i) { paste(names(extra)[i],'=',URLencode(extra[[i]]), sep="") }),
+		            collapse="&")
+  } else {
+	extrastr <- ""
   }
-  list(results=df, namespaces=ns)
+  tf <- tempfile()
+  if (query != "") {
+          if (param == "") {
+		param <- "query"
+	  }
+	  if(format == 'xml') {
+	    tf <- getURL(paste(url, '?', param, '=', URLencode(query), extrastr, sep=""),
+	                 httpheader = c(Accept="application/sparql-results+xml"))
+	    DOM <- xmlParse(tf)
+	    if(length(getNodeSet(DOM, '//s:result[1]', namespaces=sparqlns)) == 0) {
+	      rm(DOM)
+	      data.frame(c())
+	    } else {
+	      attrs <- unlist(xpathApply(DOM,
+	                                 paste('//s:head/s:variable', sep=""),
+	                                 namespaces=sparqlns,
+	                                 quote(xmlGetAttr(x, "name"))))			
+	      ns2 <- noBrackets(ns)
+	      res <- sapply(attrs, get_attr(attr, DOM, ns2, lossy), simplify=FALSE)
+	      df <- data.frame(res) # FIXME: fails when there are NULL values in the result table, like with incompatible UNIONS
+	      names(df) <- attrs
+	      rm(res)
+	      rm(DOM)
+	    }
+	  } else if (format == 'csv') {
+	    tf <- getURL(paste(url, '?', param, '=', URLencode(query), extrastr, sep=""))
+	    df <- readCSVstring(tf, blank.lines.skip=TRUE, strip.white=TRUE)
+	  } else if (format == 'tsv') {
+	    tf <- getURL(paste(url, '?', param, '=', URLencode(query), extrastr, sep=""))
+	    df <- readTSVstring(tf, blank.lines.skip=TRUE, strip.white=TRUE)
+	  }
+	  list(results=df, namespaces=ns)
+  } else if (update != "") {
+	if (param == "") {
+		param <- "update"
+	}
+        extra[[param]] <- update
+          postForm(url, .params=extra)
+  }
 }
 
 readTSVstring <- function(text, ...)
