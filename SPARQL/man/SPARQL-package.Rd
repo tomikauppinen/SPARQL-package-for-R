@@ -34,6 +34,7 @@ d <- SPARQL(url="http://services.data.gov.uk/reference/sparql",
 
 is.data.frame(d$results)
 
+# draw a pie chart from data from the Linked Open Piracy data set
 endpoint <- "http://semanticweb.cs.vu.nl/lop/sparql/"
 q <-
   "SELECT *
@@ -46,6 +47,7 @@ prefix <- c("lop","http://semanticweb.cs.vu.nl/poseidon/ns/instances/",
 res <- SPARQL(endpoint,q,prefix)$results
 pie(sort(table(res$region)),col=rainbow(12))
 
+# draw a stacked bar chart from data from the Linked Open Piracy data set
 q <-
   "SELECT *
    WHERE {

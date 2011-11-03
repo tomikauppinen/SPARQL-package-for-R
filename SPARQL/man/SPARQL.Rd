@@ -82,5 +82,33 @@ d <- SPARQL(url="http://services.data.gov.uk/reference/sparql",
             ns=c('time','<http://www.w3.org/2006/time#>'))
 
 is.data.frame(d$results)
+
+# draw a pie chart from data from the Linked Open Piracy data set
+endpoint <- "http://semanticweb.cs.vu.nl/lop/sparql/"
+q <-
+  "SELECT *
+   WHERE {
+     ?event sem:hasPlace ?place .
+     ?place eez:inPiracyRegion ?region .
+   }"
+prefix <- c("lop","http://semanticweb.cs.vu.nl/poseidon/ns/instances/",
+            "eez","http://semanticweb.cs.vu.nl/poseidon/ns/eez/")
+res <- SPARQL(endpoint,q,prefix)$results
+pie(sort(table(res$region)),col=rainbow(12))
+
+# draw a stacked bar chart from data from the Linked Open Piracy data set
+q <-
+  "SELECT *
+   WHERE {
+     ?event sem:eventType ?event_type .
+     ?event sem:hasPlace ?place .
+     ?place eez:inPiracyRegion ?region .
+   }"
+res <- SPARQL(endpoint,q,ns=prefix)$results
+restable <- table(res$event_type,res$region)
+par(mar=c(4,10,1,1))
+barplot(restable,col=rainbow(10),horiz=T,las=1,cex.names=0.8)
+legend("topright",rownames(restable),
+       cex=0.8,bty="n",fill=rainbow(10))
 }
 \keyword{ SPARQL }
