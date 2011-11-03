@@ -38,7 +38,7 @@ SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "", 
 }
   \item{extra}{
 %%     ~~Describe \code{extra} here~~
-  Extra parameters and their values that will be added to the HTTP request. Some SPARQL end-points require extra parameters to work. These can be supplied, in URL encoded form, as a character vector with this parameter. This field can be used to specify the various ways in which different end-points can be told to return a certain format. For example, extra=list(&resultFormat="xml") or extra=list(output="xml",queryLn="SPARQL")
+  Extra parameters and their values that will be added to the HTTP request. Some SPARQL end-points require extra parameters to work. These can be supplied, in URL encoded form, as a character vector with this parameter. This field can be used to specify the various ways in which different end-points can be told to return a certain format. For example, extra=list(resultFormat="xml") or extra=list(output="xml",queryLn="SPARQL")
 }
   \item{format}{
  Can be used to explicitly state what kind of format is returned by the output. This version supports "xml", "csv" and "tsv".

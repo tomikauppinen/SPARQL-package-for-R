@@ -13,9 +13,9 @@ sparqltest <- function(...) {
 #
 SPARQL <- function(url="http://localhost/", query="", update="", ns=NULL, param="", extra=NULL, format="xml", lossy=TRUE) {
   if (!is.null(extra)) {
-	  extrastr <- paste(sapply(seq(1,length(extra)),
+	  extrastr <- paste('&', sapply(seq(1,length(extra)),
 			    function (i) { paste(names(extra)[i],'=',URLencode(extra[[i]]), sep="") }),
-		            collapse="&")
+		            collapse="&", sep='')
   } else {
 	extrastr <- ""
   }

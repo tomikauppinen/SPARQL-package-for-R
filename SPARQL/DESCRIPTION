@@ -1,7 +1,7 @@
 Package: SPARQL
 Type: Package
 Title: SPARQL client 
-Version: 1.6
+Version: 1.7
 Date: 2011-10-07
 Author: Willem Robert van Hage <W.R.van.Hage@vu.nl> and Tomi Kauppinen <tomi.kauppinen@uni-muenster.de>, with contributions from Christopher Davis <C.B.Davis@tudelft.nl>
 Maintainer: Willem Robert van Hage <W.R.van.Hage@vu.nl> and Tomi Kauppinen <tomi.kauppinen@uni-muenster.de>
