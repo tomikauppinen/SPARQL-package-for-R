@@ -11,7 +11,7 @@ Load SPARQL SELECT query result tables as a data frame, or update the triple sto
 \tabular{ll}{
 Package: \tab SPARQL\cr
 Type: \tab Package\cr
-Version: \tab 1.7\cr
+Version: \tab 1.8\cr
 Date: \tab 2011-07-08\cr
 License: \tab GPL-3\cr
 Depends: \tab XML\cr
@@ -58,7 +58,7 @@ q <-
 res <- SPARQL(endpoint,q,ns=prefix)$results
 restable <- table(res$event_type,res$region)
 par(mar=c(4,10,1,1))
-barplot(restable,col=rainbow(10),horiz=T,las=1,cex.names=0.8)
+barplot(restable,col=rainbow(10),horiz=TRUE,las=1,cex.names=0.8)
 legend("topright",rownames(restable),
        cex=0.8,bty="n",fill=rainbow(10))
 }

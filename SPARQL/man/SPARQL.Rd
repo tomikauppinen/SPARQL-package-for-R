@@ -10,7 +10,7 @@ If the parameter "query" is given, it is assumed the given query is a SELECT que
 Otherwise, if the parameter "update" is given, it is assumed the given query is an update query and a POST request will be done to send the request to the URL of the end point.
 }
 \usage{
-SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "", extra = NULL, format="xml", lossy=TRUE)
+SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "", extra = NULL, format="xml")
 }
 %%- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -42,9 +42,6 @@ SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "", 
 }
   \item{format}{
  Can be used to explicitly state what kind of format is returned by the output. This version supports "xml", "csv" and "tsv".
-}
-  \item{lossy}{
-  The SPARQL client contains two parsers for SPARQL XML results, a fast lossy parser and a slow non-lossy parser. The lossy parser ignores literal datatypes and languages and does not wrap URIs with pointy braces. The lossy parameter can be set to FALSE to select the slow non-lossy XML parser when the format parameter is set to "xml" (which is the case by default). NB, Most SPARQL end-points that support CSV or TSV output are also lossy.
 }
 }
 %%\details{
@@ -107,7 +104,7 @@ q <-
 res <- SPARQL(endpoint,q,ns=prefix)$results
 restable <- table(res$event_type,res$region)
 par(mar=c(4,10,1,1))
-barplot(restable,col=rainbow(10),horiz=T,las=1,cex.names=0.8)
+barplot(restable,col=rainbow(10),horiz=TRUE,las=1,cex.names=0.8)
 legend("topright",rownames(restable),
        cex=0.8,bty="n",fill=rainbow(10))
 }
