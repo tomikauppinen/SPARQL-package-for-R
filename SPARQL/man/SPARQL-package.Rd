@@ -5,13 +5,13 @@
 SPARQL client
 }
 \description{
-Load SPARQL SELECT query result tables as a data frame, or update the triple store by connecting to an end-point over HTTP.
+Load SPARQL SELECT query result tables as a data frame, or UPDATE the triple store by connecting to an end-point over HTTP.
 }
 \details{
 \tabular{ll}{
 Package: \tab SPARQL\cr
 Type: \tab Package\cr
-Version: \tab 1.8\cr
+Version: \tab 1.9\cr
 Date: \tab 2011-07-08\cr
 License: \tab GPL-3\cr
 Depends: \tab XML\cr
@@ -19,7 +19,7 @@ LazyLoad: \tab yes\cr
 }
 }
 \author{
-Willem Robert van Hage <W.R.van.Hage@vu.nl> and Tomi Kauppinen <tomi.kauppinen@uni-muenster.de>, with contributions from Christopher Davis <C.B.Davis@tudelft.nl>.
+Willem Robert van Hage <W.R.van.Hage@vu.nl> and Tomi Kauppinen <tomi.kauppinen@uni-muenster.de>, with contributions from Christopher Davis <C.B.Davis@tudelft.nl> and Jesper Hoeksema <J.E.Hoeksema@vu.nl>.
 Maintainer: Willem Robert van Hage <W.R.van.Hage@vu.nl> and Tomi Kauppinen <tomi.kauppinen@uni-muenster.de>.
 }
 \references{

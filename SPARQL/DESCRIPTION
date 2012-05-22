@@ -1,12 +1,12 @@
 Package: SPARQL
 Type: Package
 Title: SPARQL client 
-Version: 1.8
-Date: 2012-05-17
-Author: Willem Robert van Hage <W.R.van.Hage@vu.nl> and Tomi Kauppinen <tomi.kauppinen@uni-muenster.de>, with contributions from Christopher Davis <C.B.Davis@tudelft.nl>
+Version: 1.9
+Date: 2012-05-22
+Author: Willem Robert van Hage <W.R.van.Hage@vu.nl> and Tomi Kauppinen <tomi.kauppinen@uni-muenster.de>, with contributions from Christopher Davis <C.B.Davis@tudelft.nl> and Jesper Hoeksema <J.E.Hoeksema@vu.nl>
 Maintainer: Willem Robert van Hage <W.R.van.Hage@vu.nl> and Tomi Kauppinen <tomi.kauppinen@uni-muenster.de>
-Description: Use SPARQL to pose SELECT or update queries to an end-point. 
+Description: Use SPARQL to pose SELECT or UPDATE queries to an end-point. 
 License: GPL-3
 Depends: XML, RCurl
 LazyLoad: yes
-Packaged: 2012-05-17 17:03:20 UTC; wrvhage
+Packaged: 2012-05-22 11:00:20 UTC; wrvhage
