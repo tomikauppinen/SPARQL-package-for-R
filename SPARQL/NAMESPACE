@@ -1,1 +1,4 @@
 export(SPARQL)
+export(commonns)
+export(sparqlns)
+export(sparqltest)

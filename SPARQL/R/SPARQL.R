@@ -50,7 +50,7 @@ SPARQL <- function(url="http://localhost/", query="", update="",
       DOM <- xmlParse(tf)
       if(length(getNodeSet(DOM, '//s:result[1]', namespaces=sparqlns)) == 0) {
         rm(DOM)
-        data.frame(c())
+        df <- data.frame(c())
       } else {
         attrs <- unlist(xpathApply(DOM,
                                    paste('//s:head/s:variable', sep=""),
