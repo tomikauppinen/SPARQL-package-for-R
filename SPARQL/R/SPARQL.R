@@ -73,9 +73,15 @@ SPARQL <- function(url="http://localhost/", query="", update="",
     } else if (format == 'csv') {
       tf <- getURL(paste(url, '?', param, '=', URLencode(query), extrastr, sep=""))
       df <- readCSVstring(tf, blank.lines.skip=TRUE, strip.white=TRUE)
+      if (!is.null(ns)) {
+        df <- data.frame(sapply(df,function(c){if(is.character(c)){qnames(c,ns)}else{c}}))
+      }
     } else if (format == 'tsv') {
       tf <- getURL(paste(url, '?', param, '=', URLencode(query), extrastr, sep=""))
       df <- readTSVstring(tf, blank.lines.skip=TRUE, strip.white=TRUE)
+      if (!is.null(ns)) {
+        df <- data.frame(sapply(df,function(c){if(is.character(c)){qnames(c,ns)}else{c}}))
+      }
     }
     list(results=df, namespaces=ns)
   } else if (update != "") {
@@ -88,13 +94,13 @@ SPARQL <- function(url="http://localhost/", query="", update="",
 }
 
 readTSVstring <- function(text, ...) {
-  dfr <- read.delim(tc <- textConnection(text), ...)
+  dfr <- read.delim(tc <- textConnection(text), stringsAsFactors=FALSE, ...)
   close(tc)
   dfr
 }
 
 readCSVstring <- function(text, ...) {
-  dfr <- read.csv(tc <- textConnection(text), ...)
+  dfr <- read.csv(tc <- textConnection(text), stringsAsFactors=FALSE, ...)
   close(tc)
   dfr
 }

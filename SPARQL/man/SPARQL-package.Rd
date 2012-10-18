@@ -11,8 +11,8 @@ Load SPARQL SELECT query result tables as a data frame, or UPDATE the triple sto
 \tabular{ll}{
 Package: \tab SPARQL\cr
 Type: \tab Package\cr
-Version: \tab 1.10\cr
-Date: \tab 2012-06-25\cr
+Version: \tab 1.11\cr
+Date: \tab 2012-10-18\cr
 License: \tab GPL-3\cr
 Depends: \tab XML\cr
 LazyLoad: \tab yes\cr
