@@ -5,12 +5,12 @@
 SPARQL client
 }
 \description{
-This function connects to a SPARQL end-point over HTTP, poses a SELECT query or an update query (LOAD, INSERT, DELETE). If given a SELECT query it returns the results as a data frame with a named column for each variable from the SELECT query, a list of prefixes and namespaces that were shortened to qnames is also returned. If given an update query nothing is returned.
+This function connects to a SPARQL end-point over HTTP or HTTPs, poses a SELECT query or an update query (LOAD, INSERT, DELETE). If given a SELECT query it returns the results as a data frame with a named column for each variable from the SELECT query, a list of prefixes and namespaces that were shortened to qnames is also returned. If given an update query nothing is returned.
 If the parameter "query" is given, it is assumed the given query is a SELECT query and a GET request will be done to get the results from the URL of the end point.
 Otherwise, if the parameter "update" is given, it is assumed the given query is an update query and a POST request will be done to send the request to the URL of the end point.
 }
 \usage{
-SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "", extra = NULL, format="xml")
+SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "", extra = NULL, format="xml", curl_args=NULL, parser_args=NULL)
 }
 %%- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -42,6 +42,12 @@ SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "", 
 }
   \item{format}{
  Can be used to explicitly state what kind of format is returned by the output. This version supports "xml", "csv" and "tsv".
+}
+  \item{curl_args}{
+A list of arguments that will be passed to RCurl when fetching the SPARQL results over HTTP. This can be used, for example, to pass authentication arguments.
+}
+  \item{parser_args}{
+A list of arguments that will be passed to the XML, CSV, TSV, etc. parser that processed the returned SPARQL result table. 
 }
 }
 %%\details{

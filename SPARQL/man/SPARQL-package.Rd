@@ -11,16 +11,16 @@ Load SPARQL SELECT query result tables as a data frame, or UPDATE the triple sto
 \tabular{ll}{
 Package: \tab SPARQL\cr
 Type: \tab Package\cr
-Version: \tab 1.12\cr
-Date: \tab 2012-11-20\cr
+Version: \tab 1.13\cr
+Date: \tab 2012-11-30\cr
 License: \tab GPL-3\cr
 Depends: \tab XML\cr
 LazyLoad: \tab yes\cr
 }
 }
 \author{
-Willem Robert van Hage <W.R.van.Hage@vu.nl>, with contributions from: Tomi Kauppinen <tomi.kauppinen@uni-muenster.de>, Benedikt Graeler <ben.graeler@uni-muenster.de>, Christopher Davis <C.B.Davis@tudelft.nl> and Jesper Hoeksema <J.E.Hoeksema@vu.nl>
-Maintainer: Willem Robert van Hage <W.R.van.Hage@vu.nl> and Tomi Kauppinen <tomi.kauppinen@uni-muenster.de>.
+Willem Robert van Hage <W.R.van.Hage@vu.nl>, with contributions from: Tomi Kauppinen, Benedikt Graeler, Christopher Davis, Jesper Hoeksema, and Alan Ruttenberg.
+Maintainer: Willem Robert van Hage <W.R.van.Hage@vu.nl>
 }
 \references{
 SPARQL specification, \url{http://www.w3.org/TR/rdf-sparql-query/}.\cr

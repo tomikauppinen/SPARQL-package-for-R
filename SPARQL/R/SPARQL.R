@@ -34,7 +34,7 @@ SPARQL <- function(url="http://localhost/", query="", update="",
                    ns=NULL, param="", extra=NULL, format="xml", curl_args=NULL, parser_args=NULL) {
   if (!is.null(extra)) {
     extrastr <- paste('&', sapply(seq(1,length(extra)),
-                                  function (i) { paste(names(extra)[i],'=',URLencode(extra[[i]]), sep="") }),
+                                  function (i) { paste(names(extra)[i],'=',URLencode(extra[[i]],reserved=TRUE), sep="") }),
                       collapse="&", sep='')
   } else {
     extrastr <- ""
@@ -45,7 +45,7 @@ SPARQL <- function(url="http://localhost/", query="", update="",
       param <- "query"
     }
     if(format == 'xml') {
-      tf <- do.call(getURL,append(list(url = paste(url, '?', param, '=', URLencode(query), extrastr, sep=""),
+      tf <- do.call(getURL,append(list(url = paste(url, '?', param, '=', URLencode(query,reserved=TRUE), extrastr, sep=""),
                                        httpheader = c(Accept="application/sparql-results+xml")),
                                   curl_args))
       DOM <- do.call(xmlParse, append(list(tf), parser_args))
@@ -77,14 +77,14 @@ SPARQL <- function(url="http://localhost/", query="", update="",
         
       }
     } else if (format == 'csv') {
-      tf <- do.call(getURL,append(list(url=paste(url, '?', param, '=', URLencode(query), extrastr, sep="")),
+      tf <- do.call(getURL,append(list(url=paste(url, '?', param, '=', URLencode(query,reserved=TRUE), extrastr, sep="")),
                                   curl_args))
       df <- do.call(readCSVstring,append(list(tf, blank.lines.skip=TRUE, strip.white=TRUE),
                                          parser_args))
       if (!is.null(ns)) 
         df <- dropNS(df,ns)
     } else if (format == 'tsv') {
-      tf <- do.call(getURL,append(list(url=paste(url, '?', param, '=', URLencode(query), extrastr, sep="")),
+      tf <- do.call(getURL,append(list(url=paste(url, '?', param, '=', URLencode(query,reserved=TRUE), extrastr, sep="")),
                                   curl_args))
       df <- do.call(readTSVstring,append(list(tf, blank.lines.skip=TRUE, strip.white=TRUE),
                                          parser_args))
@@ -100,7 +100,7 @@ SPARQL <- function(url="http://localhost/", query="", update="",
       param <- "update"
     }
     extra[[param]] <- update
-    do.call(postForm,append(list(url, .params=extra), parser_opts))
+    do.call(postForm,append(list(url, .params=extra), parser_args))
   }
 }
 
