@@ -100,7 +100,7 @@ SPARQL <- function(url="http://localhost/", query="", update="",
       param <- "update"
     }
     extra[[param]] <- update
-    do.call(postForm,append(list(url, .params=extra), parser_args))
+    do.call(postForm,append(list(url, .params=extra),curl_args))
   }
 }
 

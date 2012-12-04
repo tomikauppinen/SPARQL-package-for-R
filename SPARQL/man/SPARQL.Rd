@@ -44,7 +44,7 @@ SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "", 
  Can be used to explicitly state what kind of format is returned by the output. This version supports "xml", "csv" and "tsv".
 }
   \item{curl_args}{
-A list of arguments that will be passed to RCurl when fetching the SPARQL results over HTTP. This can be used, for example, to pass authentication arguments.
+A list of arguments that will be passed to RCurl when fetching the SPARQL results over HTTP. This can be used, for example, to pass authentication arguments, or to change the mime type of a post request from multipart/form-data to application/x-www-form-urlencoded, by passing curl_args=list(style="post").
 }
   \item{parser_args}{
 A list of arguments that will be passed to the XML, CSV, TSV, etc. parser that processed the returned SPARQL result table. 
