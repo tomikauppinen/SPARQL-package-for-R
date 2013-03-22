@@ -1,12 +1,12 @@
 Package: SPARQL
 Type: Package
 Title: SPARQL client 
-Version: 1.13
-Date: 2012-11-30
+Version: 1.14
+Date: 2013-01-04
 Author: Willem Robert van Hage <W.R.van.Hage@vu.nl>, with contributions from: Tomi Kauppinen, Benedikt Graeler, Christopher Davis, Jesper Hoeksema, and Alan Ruttenberg.
 Maintainer: Willem Robert van Hage <W.R.van.Hage@vu.nl>
 Description: Use SPARQL to pose SELECT or UPDATE queries to an end-point. 
 License: GPL-3
 Depends: XML, RCurl
 LazyLoad: yes
-Packaged: 2012-11-20 09:53:20 UTC; wrvhage
+Packaged: 2013-01-04 16:20:20 UTC; wrvhage
