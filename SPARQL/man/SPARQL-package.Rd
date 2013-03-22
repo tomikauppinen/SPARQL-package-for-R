@@ -6,20 +6,22 @@ SPARQL client
 }
 \description{
 Load SPARQL SELECT query result tables as a data frame, or UPDATE the triple store by connecting to an end-point over HTTP.
+
+The development of this library has been developed in part within the COMBINE project supported by the ONR Global NICOP grant N62909-11-1-7060.
 }
 \details{
 \tabular{ll}{
 Package: \tab SPARQL\cr
 Type: \tab Package\cr
-Version: \tab 1.14\cr
-Date: \tab 2013-01-04\cr
+Version: \tab 1.15\cr
+Date: \tab 2013-03-22\cr
 License: \tab GPL-3\cr
 Depends: \tab XML\cr
 LazyLoad: \tab yes\cr
 }
 }
 \author{
-Willem Robert van Hage <W.R.van.Hage@vu.nl>, with contributions from: Tomi Kauppinen, Benedikt Graeler, Christopher Davis, Jesper Hoeksema, and Alan Ruttenberg.
+Willem Robert van Hage <W.R.van.Hage@vu.nl>, with contributions from: Tomi Kauppinen, Benedikt Graeler, Christopher Davis, Jesper Hoeksema, Alan Ruttenberg, and Daniel Bahls.
 Maintainer: Willem Robert van Hage <W.R.van.Hage@vu.nl>
 }
 \references{

@@ -59,13 +59,10 @@ SPARQL <- function(url="http://localhost/", query="", update="",
                                    quote(xmlGetAttr(x, "name"))))			
         ns2 <- noBrackets(ns)
         res <- get_attr(attrs, DOM, ns2)
-        if(dim(res)[[1]] == 1 & dim(res)[[2]] > 1) {
-          df <- data.frame(unlist(res))
-          names(df) <- attrs[1]
-        } else { 
-          df <- data.frame(res)
-        }
-        rm(res)
+
+        df <- data.frame(res)
+
+		rm(res)
         rm(DOM)
         
         # FIXME: find neater way to unlist columns
