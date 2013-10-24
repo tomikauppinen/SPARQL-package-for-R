@@ -10,7 +10,8 @@ If the parameter "query" is given, it is assumed the given query is a SELECT que
 Otherwise, if the parameter "update" is given, it is assumed the given query is an update query and a POST request will be done to send the request to the URL of the end point.
 }
 \usage{
-SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "", extra = NULL, format="xml", curl_args=NULL, parser_args=NULL)
+SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "",
+       extra = NULL, format="xml", curl_args=NULL, parser_args=NULL)
 }
 %%- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -80,6 +81,7 @@ Willem Robert van Hage and Tomi Kauppinen
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 %%}
 \examples{
+\dontrun{
 d <- SPARQL(url="http://services.data.gov.uk/reference/sparql",
             query="SELECT * WHERE { ?s ?p ?o . } LIMIT 10",
             ns=c('time','<http://www.w3.org/2006/time#>'))
@@ -113,5 +115,6 @@ par(mar=c(4,10,1,1))
 barplot(restable,col=rainbow(10),horiz=TRUE,las=1,cex.names=0.8)
 legend("topright",rownames(restable),
        cex=0.8,bty="n",fill=rainbow(10))
+}
 }
 \keyword{ SPARQL }
