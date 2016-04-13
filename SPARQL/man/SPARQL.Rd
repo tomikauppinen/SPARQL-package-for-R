@@ -11,7 +11,7 @@ Otherwise, if the parameter "update" is given, it is assumed the given query is 
 }
 \usage{
 SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "",
-       extra = NULL, format="xml", curl_args=NULL, parser_args=NULL)
+       extra = NULL, format="xml", curl_args=NULL, parser_args=NULL, encoding="UTF-8")
 }
 %%- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -31,7 +31,7 @@ SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "",
 %%     ~~Describe \code{ns} here~~
   Prefixes to shorten IRIs returned by the SPARQL end-point.
   For example, \preformatted{ns=c('dc','<http://purl.org/dc/elements/1.1/>',
-     'rdfs','<http://www.w3.org/2000/01/rdf-schema#>')} will shorten the IRIs \code{'http://purl.org/dc/elements/1.1/title'} to \code{'dc:title'} and \code{'http://www.w3.org/2000/01/rdf-schema#label'} to \code{'rdfs:label'}. 
+     'rdfs','<http://www.w3.org/2000/01/rdf-schema#>')} will shorten the IRIs \code{'http://purl.org/dc/elements/1.1/title'} to \code{'dc:title'} and \code{'http://www.w3.org/2000/01/rdf-schema#label'} to \code{'rdfs:label'}.
 }
   \item{param}{
 %%     ~~Describe \code{param} here~~
@@ -48,14 +48,17 @@ SPARQL(url = "http://localhost/", query = "", update="", ns = NULL, param = "",
 A list of arguments that will be passed to RCurl when fetching the SPARQL results over HTTP. This can be used, for example, to pass authentication arguments, or to change the mime type of a post request from multipart/form-data to application/x-www-form-urlencoded, by passing curl_args=list(style="post").
 }
   \item{parser_args}{
-A list of arguments that will be passed to the XML, CSV, TSV, etc. parser that processed the returned SPARQL result table. 
+A list of arguments that will be passed to the XML, CSV, TSV, etc. parser that processed the returned SPARQL result table.
+}
+  \item{encoding}{
+Encoding parameter passed to RCurl::getURL, e.g. "UTF-8" or "ISO-8859-1".
 }
 }
 %%\details{
 %%  ~~ If necessary, more details than the description above ~~
 %%}
 \value{
-The returned data frame contains a column for each variable in the SELECT query. For example, the query \code{"SELECT * WHERE { ?s ?p ?o . } LIMIT 10"} will yield three columns named "s", "p", and "o". The query \code{"SELECT ?s WHERE { ?s ?p ?o . } LIMIT 10"} will yield only one column named "s". 
+The returned data frame contains a column for each variable in the SELECT query. For example, the query \code{"SELECT * WHERE { ?s ?p ?o . } LIMIT 10"} will yield three columns named "s", "p", and "o". The query \code{"SELECT ?s WHERE { ?s ?p ?o . } LIMIT 10"} will yield only one column named "s".
 %%  ~Describe the value returned
 %%  If it is a LIST, use
 %%  \item{comp1 }{Description of 'comp1'}
